@@ -33,9 +33,9 @@
     "lint-staged": "15.2.10"
   },
   "lint-staged": {
-    "./**/*": [
-      "pnpm prettier:format",
-      "pnpm eslint:format"
+    "/**/*": [
+      "yarn prettier:format",
+      "yarn eslint:format"
     ]
   }
 }
