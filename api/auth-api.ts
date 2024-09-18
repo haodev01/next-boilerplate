@@ -1,22 +1,15 @@
-import { listApi } from '@/constants/listApi';
-import { ApiClient } from '@/lib';
+import { listApi } from '@/constants/list-api';
 import http from '@/lib/http';
+import { FormLogin } from '@/types/user';
 
-type FormLogin = {
-  email: string;
-  password: string;
-};
 export const authApi = {
-  login: async (formData: FormLogin) => {
-    return http.post(listApi.Login, formData);
+  login: async (formValues: FormLogin) => {
+    return http.post(listApi.Login, formValues);
   },
   logout: () => {
     return Promise.resolve();
   },
   refreshToken: async (refreshToken: string) => {
     return http.put(listApi.RefreshToken, { refreshToken });
-  },
-  profile: async () => {
-    return ApiClient.get(listApi.GameAccountInfo);
   },
 };

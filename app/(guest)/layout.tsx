@@ -1,0 +1,10 @@
+'use client';
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div>
+      <h1>Header Auth</h1>
+      {children}
+    </div>
+  );
+}
