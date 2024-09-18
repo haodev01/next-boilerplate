@@ -27,7 +27,7 @@
     "react/prop-types": 0,
     "react/react-in-jsx-scope": 0,
     "import-helpers/order-imports": [
-      2,
+      0,
       {
         "newlinesBetween": "always",
         "groups": [
@@ -50,7 +50,7 @@
       }
     ],
     "no-console": [
-      2,
+      0,
       {
         "allow": ["warn", "error"]
       }

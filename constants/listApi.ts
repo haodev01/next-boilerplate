@@ -1,0 +1,18 @@
+export const listApi = {
+  GameChallengeInfo: 'GameChallenge/Info',
+  GameAccountRewardInfo: 'GameAccountReward/Info',
+  GameAccountPolicyTrue: 'GameAccount/Policy/true',
+  GameAccountInfo: 'GameAccount/Info',
+  GameAccountSoundTrue: 'GameAccount/Sound/true',
+  GameAccountSoundFalse: 'GameAccount/Sound/false',
+  ReferralCodeConfirm: 'ReferralCode/Confirm',
+  CompleteTaskCheckIn: 'CompleteTask/CheckIn',
+  GameQuestionRoll: 'GameQuestion/Roll',
+  GameGetQuestion: 'GameQuestion/GetQuestion',
+  GameQuestionConfirm: 'GameQuestion/Confirm',
+  StartRound: 'GameQuestion/StartRound',
+  RankingTopScores: 'Ranking/TopScores',
+  CompleteTaskShareFacebook: 'CompleteTask/ShareFacebook',
+  Login: '/users/login',
+  RefreshToken: '/users/refresh_token',
+};
