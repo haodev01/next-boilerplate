@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createSignHash, encodeFormData } from '@/helpers/hash';
+import { listApi } from '@/configs';
 import axios from 'axios';
-import { getSession } from 'next-auth/react';
-// import { getSession } from 'next-auth/react';
-const apiHasSignAccessToken = [''];
 
 export const isClient = () => typeof window !== 'undefined';
-const http = axios.create({
-  baseURL: 'http://localhost:8017/v1',
+const request = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 1000 * 60 * 5,
   headers: {
     'Content-Type': 'application/json',
@@ -15,21 +12,15 @@ const http = axios.create({
   withCredentials: true,
 });
 
-http.interceptors.request.use(
+request.interceptors.request.use(
   async (config) => {
-    if (isClient()) {
-      const session = await getSession();
-      const token = session?.accessToken as string;
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
     return config;
   },
   (error) => {
     return Promise.reject(error);
   },
 );
-http.interceptors.response.use(
+request.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -38,27 +29,19 @@ http.interceptors.response.use(
   },
 );
 
-export const ApiClient = {
+const http = {
   post: async (url: string, data = {}, conf = {}) => {
-    const formData = encodeFormData(url, data);
-
-    return http.post(url, formData, conf);
+    return request.post(url, data, conf);
   },
-  get: async (url: string, data: any = {}, conf: any = {}) => {
-    const accessToken = '';
-    if (data.data) {
-      if (apiHasSignAccessToken.includes(url)) {
-        conf.sign = createSignHash(url, data.data, accessToken);
-      } else {
-        conf.sign = createSignHash(url, data.data);
-      }
-    }
-
-    return http.get(url, {
-      params: encodeFormData(url, data),
+  get: async (url: string, params = {}, conf = {}) => {
+    return request.get(url, {
+      params,
       ...conf,
     });
   },
+  put: async () => {},
+  delete: () => {},
+  api: listApi,
 };
 
 export default http;
